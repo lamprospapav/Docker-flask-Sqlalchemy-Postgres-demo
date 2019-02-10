@@ -15,6 +15,7 @@ class DevelopmentSettings(Settings):
     SQLALCHEMY_ECHO = True
 
 
+
 class ProductionSettings(Settings):
     """
     Production settings
