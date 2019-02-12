@@ -4,6 +4,8 @@ class Settings(object):
     Common settings
 
     """
+    DEBUG = True
+
     # Put any configuration here that are common across all enviroments
 
 class DevelopmentSettings(Settings):
@@ -11,7 +13,6 @@ class DevelopmentSettings(Settings):
     Developement settings
 
     """
-    DEBUG = True
     SQLALCHEMY_ECHO = True
 
 
@@ -23,7 +24,16 @@ class ProductionSettings(Settings):
     """
     Debug = False
 
+class TestingSettings(Settings):
+    """
+    Testing configurations
+
+    """
+    TESTING = True
+
+
 app_settings = {
     'development': DevelopmentSettings,
-    'production': ProductionSettings
+    'production': ProductionSettings,
+    'testing' : TestingSettings
 }
