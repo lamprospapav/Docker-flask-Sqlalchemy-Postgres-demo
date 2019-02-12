@@ -1,0 +1,42 @@
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        {% if profile %}
+          <hr class="intro-divider">
+          <div class="center">
+              <div class="card center" style="width: 50rem;" >
+                  <img class="card-img-top middle center " src="../static/img/user.png" alt="Card image cap">
+                  <div class="card-body center">
+                    <h2 class="card-title center "> {{ profile.username }}</h2>
+                  </div>
+                  <ul class="list-group list-group-flush ">
+                    <li class="list-group-item">Email: {{ profile.email }} </li>
+                    <li class="list-group-item">Username: {{ profile.username}} </li>
+                    <li class="list-group-item">First Name:  {{ profile.first_name}} </li>
+                    <li class="list-group-item">Last Name:   {{ profile.last_name }} </li>
+                  </ul>
+                </div>
+          </div>
+          <div style="text-align: center">
+        {% else %}
+          <div style="text-align: center">
+            <h3> No books have been added. </h3>
+            <hr class="intro-divider">
+        {% endif %}
+        <hr class="intro-divider">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,5 +1,6 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 from app import db,login_manager
 
@@ -16,6 +17,8 @@ class User (UserMixin, db.Model):
     first_name = db.Column(db.String(60), index=True)
     last_name = db.Column(db.String(60), index=True)
     password_hash = db.Column(db.String(128))
+    books = db.relationship('Book', backref='Users',
+                                lazy='dynamic')
 
     @property
     def password(self):
@@ -40,6 +43,26 @@ class User (UserMixin, db.Model):
     def __repr__(self):
         return '<User: {}>'.format(self.username)
 
+class Book (db.Model):
+    """
+    Create an Demo object
+    
+    """
+    __tablename__ = 'book'
+    
+    id = db.Column(db.Integer,primary_key=True)
+    name = db.Column(db.String(60),nullable=False,index=True)
+    rating = db.Column(db.Float)
+    pub_date = db.Column(db.DateTime,default = datetime.now)
+    user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
+   
+    def __init__(self, name, rating,user_id):
+        self.name = name
+        self.rating = rating
+        self.user_id= user_id
+        
+    def __repr__(self):
+        return '{}'.format(self.name)
 
 # Set up user_loader
 @login_manager.user_loader

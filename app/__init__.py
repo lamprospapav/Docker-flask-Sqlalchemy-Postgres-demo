@@ -34,4 +34,15 @@ def create_app(settings_name):
     from .home import home as home_blueprint
     app.register_blueprint(home_blueprint)
 
+    from .book import book as books_blueprint
+    app.register_blueprint(books_blueprint)
+
+    @app.errorhandler(404)
+    def page_not_found(error):
+        return render_template('errors/404.html', title='Page Not Found'), 404
+
+    @app.errorhandler(500)
+    def internal_server_error(error):
+        return render_template('errors/500.html', title='Server Error'), 500
+
     return app

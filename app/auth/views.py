@@ -45,18 +45,18 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.verify_password(
                 form.password.data):
-            # log employee in
+
             login_user(user)
 
             # redirect to the dashboard page after login
-            return redirect(url_for('home.dashboard'))
+            return redirect(url_for('book.list_books'))
 
         # when login details are incorrect
         else:
             flash('Invalid email or password.')
 
     # load login template
-    return render_template('auth/login.html', form=form, title='Login')
+    return render_template('auth/login.html',form=form, title='Login')
 
 
 @auth.route('/logout')
@@ -71,3 +71,13 @@ def logout():
 
     # redirect to the login page
     return redirect(url_for('auth.login'))
+
+@auth.route('/profile/<int:id>',methods=['GET','POST'])
+@login_required
+def profile(id):
+    """
+    List profile
+    
+    """
+    profile = User.query.get_or_404(id)
+    return render_template('auth/profile.html',profile = profile,title="View Profile")
