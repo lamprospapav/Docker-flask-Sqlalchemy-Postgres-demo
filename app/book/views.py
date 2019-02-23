@@ -1,7 +1,7 @@
 from flask import flash,redirect,render_template,url_for
 from flask_login import login_required,current_user
 from . import book
-from forms import BookForm
+from .forms import BookForm
 from .. import db
 from ..models import Book,User
 

@@ -4,7 +4,9 @@ class Settings(object):
     Common settings
 
     """
-    DEBUG = True
+    SECRET_KEY = "testkey"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    LOG_FILE = "api.log"
 
     # Put any configuration here that are common across all enviroments
 
@@ -24,6 +26,10 @@ class ProductionSettings(Settings):
     """
     Debug = False
 
+class DockerDevSettings(Settings):
+    SQLALCHEMY_DATABASE_URI = "postgresql://testusr:password@postgres/testdb"
+    DEBUG = True
+
 class TestingSettings(Settings):
     """
     Testing configurations
@@ -35,5 +41,6 @@ class TestingSettings(Settings):
 app_settings = {
     'development': DevelopmentSettings,
     'production': ProductionSettings,
+    "docker": DockerDevSettings,
     'testing' : TestingSettings
 }

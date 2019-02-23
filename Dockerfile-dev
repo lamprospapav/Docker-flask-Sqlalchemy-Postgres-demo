@@ -1,0 +1,19 @@
+FROM python:3.6.1-alpine3.6
+
+RUN apk add --update\
+    bash\
+    python\
+    py-pip\
+    python-dev\
+    gcc\
+    musl-dev\
+    postgresql-dev\
+    libffi-dev
+
+
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+
+ENV FLASK_CONFIG=docker
+EXPOSE 5000
