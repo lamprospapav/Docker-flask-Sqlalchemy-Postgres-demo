@@ -11,7 +11,7 @@ app = create_app(settings_name)
 manager = Manager(app)
 migrate = Migrate(app, db)
 
-# adds the python manage.py db init, db migrate, db upgrade commands
+# adds the python run.py db init, db migrate, db upgrade commands
 manager.add_command("db", MigrateCommand)
 
 @manager.command
