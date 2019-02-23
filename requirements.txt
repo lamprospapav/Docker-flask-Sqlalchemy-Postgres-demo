@@ -2,17 +2,10 @@ flask-login
 flask-sqlalchemy
 Flask
 flask-migrate
-<<<<<<< HEAD
 flask_script
 Flask-WTF
 flask-bootstrap
 psycopg2
 gunicorn
 
-=======
-Flask-WTF
-flask-bootstrap
-psycopg2
-Flask-Testing
->>>>>>> f9fc800be0ae35df3cacd75919612e5e0dbe1410
 
